@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String originalIp;
     private String maskedIp;
-    private Boolean connected;
+    private boolean connected;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Connection>connectionList = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class User {
         return connected;
     }
 
-    public void setConnected(Boolean connected) {
+    public void setConnected(boolean connected) {
         this.connected = connected;
     }
 }
