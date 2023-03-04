@@ -9,12 +9,14 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Enumerated(value = EnumType.STRING)
     private CountryName countryName;
     private String code;
 
     @OneToOne
     @JoinColumn
-    private User users;
+    private User user;
     @ManyToOne
     @JoinColumn
     private ServiceProvider serviceProvider;
@@ -34,20 +36,20 @@ public class Country {
         return id;
     }
 
-    public User getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getCountryName() {
-        return countryName.name();
+    public CountryName getCountryName() {
+        return countryName;
     }
 
     public void setCountryName(CountryName countryName) {

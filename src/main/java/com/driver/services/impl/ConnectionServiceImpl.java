@@ -42,7 +42,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             List<Country>countryList = i.getCountryList();
             if(countryList!=null){
                 for(Country j : countryList){
-                    String name1 = country.getCountryName();
+                    String name1 = country.getCountryName().name();
                     if(name1.equals(countryName)){
                         user.setMaskedIp(j.getCode());
                         user.setConnected(true);
