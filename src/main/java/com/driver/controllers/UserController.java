@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PutMapping("/subscribe")
-    public void subscribe(@RequestParam Integer userId, @RequestParam Integer serviceProviderId){
+    public void subscribe(@RequestParam int userId, @RequestParam int serviceProviderId){
         //subscribe to the serviceProvider by adding it to the list of providers and return updated User
         User user = userService.subscribe(userId, serviceProviderId);
     }
