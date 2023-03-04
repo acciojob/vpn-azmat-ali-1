@@ -34,7 +34,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         if (name.equalsIgnoreCase(countryName)) {
             return user;
         }
-        List<ServiceProvider>serviceProviderList = user.getServiceProviders();
+        List<ServiceProvider>serviceProviderList = user.getServiceProviderList();
         if(serviceProviderList==null){
             throw new Exception("Unable to connect");
         }
@@ -42,7 +42,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             List<Country>countryList = i.getCountryList();
             if(countryList!=null){
                 for(Country j : countryList){
-                    String name1 = String.valueOf(country.getCountryName());
+                    String name1 = country.getCountryName();
                     if(name1.equals(countryName)){
                         user.setMaskedIp(j.getCode());
                         user.setConnected(true);

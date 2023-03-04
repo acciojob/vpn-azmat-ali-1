@@ -46,8 +46,8 @@ public class Country {
         this.id = id;
     }
 
-    public CountryName getCountryName() {
-        return countryName;
+    public String getCountryName() {
+        return countryName.name();
     }
 
     public void setCountryName(CountryName countryName) {
