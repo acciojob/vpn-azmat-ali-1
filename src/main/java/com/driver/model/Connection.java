@@ -11,10 +11,11 @@ public class Connection {
 
     @ManyToOne
     @JoinColumn
-    private User user;
+    ServiceProvider serviceProvider;
     @ManyToOne
     @JoinColumn
-    ServiceProvider serviceProvider;
+    private User user;
+
 
     public ServiceProvider getServiceProvider() {
         return serviceProvider;

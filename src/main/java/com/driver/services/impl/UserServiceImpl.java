@@ -30,18 +30,45 @@ public class UserServiceImpl implements UserService {
 
             User user = new User();
             user.setUsername(username);user.setPassword(password);
+        if(countryName.equalsIgnoreCase("IND") ||
+                countryName.equalsIgnoreCase("USA")||
+                countryName.equalsIgnoreCase("JPN")||
+                countryName.equalsIgnoreCase("AUS")|| countryName.equalsIgnoreCase("CHI")){
 
             Country country = new Country();
-            CountryName countryName1 = CountryName.valueOf(countryName.toUpperCase());
-            country.setCountryName(countryName1);
-            country.setCode(countryName1.toCode());
+
+            if(countryName.equalsIgnoreCase("IND")){
+                country.setCountryName(CountryName.IND);
+                country.setCode(CountryName.IND.toCode());
+            }
+            else if(countryName.equalsIgnoreCase("USA")){
+                country.setCountryName(CountryName.USA);
+                country.setCode(CountryName.USA.toCode());
+            }
+            else if(countryName.equalsIgnoreCase("AUS")){
+                country.setCountryName(CountryName.AUS);
+                country.setCode(CountryName.AUS.toCode());
+            }
+            else if(countryName.equalsIgnoreCase("CHI")){
+                country.setCountryName(CountryName.CHI);
+                country.setCode(CountryName.CHI.toCode());
+            }
+            else if(countryName.equalsIgnoreCase("JPN")){
+                country.setCountryName(CountryName.JPN);
+                country.setCode(CountryName.JPN.toCode());
+            }
+
+
             country.setUser(user);
 
             user.setOriginalCountry(country);
-            user.setOriginalIp(country.getCode()+"."+user.getId());
+            user.setOriginalIp(country.getCode()+"."+userRepository3.save(user).getId());
             user.setConnected(false);
-            user.setMaskedIp(null);
             userRepository3.save(user);
+            }
+           else {
+                throw new Exception("Country not found");
+        }
 
             return user;
     }
@@ -58,7 +85,8 @@ public class UserServiceImpl implements UserService {
         serviceProvider.setUsers(userList);
         serviceProviderList.add(serviceProvider);
         user.setServiceProviderList(serviceProviderList);
-        userRepository3.save(user);
+
+        serviceProviderRepository3.save(serviceProvider);
         return user;
     }
 }
