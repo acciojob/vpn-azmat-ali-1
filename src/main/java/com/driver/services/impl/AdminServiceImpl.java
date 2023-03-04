@@ -26,49 +26,51 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin register(String username, String password) {
-        Admin admin =new Admin();
-        admin.setUsername(username);
-        admin.setPassword(password);
-        adminRepository1.save(admin);
-        return admin;
+//        Admin admin =new Admin();
+//        admin.setUsername(username);
+//        admin.setPassword(password);
+//        adminRepository1.save(admin);
+//        return admin;
+        return null;
     }
 
     @Override
     public Admin addServiceProvider(int adminId, String providerName) {
-        if(adminRepository1.findById(adminId).isPresent()){
-            Admin admin = adminRepository1.findById(adminId).get();
-            List<ServiceProvider> serviceProviderList = admin.getServiceProviders();
-            ServiceProvider serviceProvider = new ServiceProvider();
-            serviceProvider.setName(providerName);
-            serviceProvider.setAdmin(admin);
-            serviceProviderList.add(serviceProvider);
-            admin.setServiceProviders(serviceProviderList);
-            adminRepository1.save(admin);
-            return admin;
-        }
+//        if(adminRepository1.findById(adminId).isPresent()){
+//            Admin admin = adminRepository1.findById(adminId).get();
+//            List<ServiceProvider> serviceProviderList = admin.getServiceProviders();
+//            ServiceProvider serviceProvider = new ServiceProvider();
+//            serviceProvider.setName(providerName);
+//            serviceProvider.setAdmin(admin);
+//            serviceProviderList.add(serviceProvider);
+//            admin.setServiceProviders(serviceProviderList);
+//            adminRepository1.save(admin);
+//            return admin;
+//        }
        return null;
     }
 
     @Override
     public ServiceProvider addCountry(int serviceProviderId, String countryName) throws Exception{
         //ind, aus, usa, chi, jpn
-        try {
-            ServiceProvider serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
-
-            Country country = new Country();
-            CountryName countryName1 = CountryName.valueOf(countryName);
-            country.setCountryName(countryName1);
-            country.setServiceProvider(serviceProvider);
-            country.setCode(countryName1.toCode());
-            country.setServiceProvider(serviceProvider);
-            List<Country> countryList = serviceProvider.getCountryList();
-            countryList.add(country);
-            serviceProvider.setCountryList(countryList);
-            serviceProviderRepository1.save(serviceProvider);
-            return serviceProvider;
-        }
-      catch (Exception e){
-          throw new Exception("Country not found");
-      }
+//        try {
+//            ServiceProvider serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
+//
+//            Country country = new Country();
+//            CountryName countryName1 = CountryName.valueOf(countryName);
+//            country.setCountryName(countryName1);
+//            country.setServiceProvider(serviceProvider);
+//            country.setCode(countryName1.toCode());
+//            country.setServiceProvider(serviceProvider);
+//            List<Country> countryList = serviceProvider.getCountryList();
+//            countryList.add(country);
+//            serviceProvider.setCountryList(countryList);
+//            serviceProviderRepository1.save(serviceProvider);
+//            return serviceProvider;
+//        }
+//      catch (Exception e){
+//          throw new Exception("Country not found");
+//      }
+        return null;
     }
 }
