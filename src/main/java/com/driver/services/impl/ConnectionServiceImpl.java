@@ -29,7 +29,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         if(user.getConnected()){
             throw new Exception("Already connected");
         }
-        Country country = user.getCountry();
+        Country country = user.getOriginalCountry();
         String name = String.valueOf(country.getCountryName());
         if (name.equalsIgnoreCase(countryName)) {
             return user;
@@ -71,6 +71,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         }
         user.setConnected(false);
         user.setMaskedIp(null);
+        userRepository2.save(user);
         return user;
     }
     @Override

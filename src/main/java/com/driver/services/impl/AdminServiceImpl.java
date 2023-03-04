@@ -49,25 +49,23 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public ServiceProvider addCountry(int serviceProviderId, String countryName) throws Exception{
         //ind, aus, usa, chi, jpn
-        if(!countryName.equalsIgnoreCase("ind")&&
-                !countryName.equalsIgnoreCase("aus")&&
-                !countryName.equalsIgnoreCase("usa")&&
-                !countryName.equalsIgnoreCase("chi")&&
-                !countryName.equalsIgnoreCase("jpn")
-        ){
-            throw new Exception("Country not found");
-        }
-        ServiceProvider serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
+        try {
+            ServiceProvider serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
 
-        Country country = new Country();
-        CountryName countryName1 = CountryName.valueOf(countryName);
-        country.setCountryName(countryName1);
-        country.setServiceProvider(serviceProvider);
-        country.setCode(countryName1.toCode());
-        List<Country> countryList = serviceProvider.getCountryList();
-        countryList.add(country);
-        serviceProvider.setCountryList(countryList);
-        serviceProviderRepository1.save(serviceProvider);
-        return serviceProvider;
+            Country country = new Country();
+            CountryName countryName1 = CountryName.valueOf(countryName.toUpperCase());
+            country.setCountryName(countryName1);
+            country.setServiceProvider(serviceProvider);
+            country.setCode(countryName1.toCode());
+            country.setServiceProvider(serviceProvider);
+            List<Country> countryList = serviceProvider.getCountryList();
+            countryList.add(country);
+            serviceProvider.setCountryList(countryList);
+            serviceProviderRepository1.save(serviceProvider);
+            return serviceProvider;
+        }
+      catch (Exception e){
+          throw new Exception("Country not found");
+      }
     }
 }

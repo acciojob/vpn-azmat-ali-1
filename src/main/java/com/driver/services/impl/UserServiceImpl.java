@@ -25,28 +25,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String username, String password, String countryName) throws Exception{
+
+
+        try {
             User user = new User();
             user.setUsername(username);user.setPassword(password);
-        if(!countryName.equalsIgnoreCase("ind")&&
-                !countryName.equalsIgnoreCase("aus")&&
-                !countryName.equalsIgnoreCase("usa")&&
-                !countryName.equalsIgnoreCase("chi")&&
-                !countryName.equalsIgnoreCase("jpn")
-        ){
+
+            Country country = new Country();
+            CountryName countryName1 = CountryName.valueOf(countryName.toUpperCase());
+            country.setCountryName(countryName1);
+            country.setCode(countryName1.toCode());
+            country.setUsers(user);
+
+            user.setOriginalCountry(country);
+            user.setOriginalIp(country.getCode()+"."+user.getId());
+            user.setConnected(false);
+            user.setMaskedIp(null);
+            userRepository3.save(user);
+
+            return user;
+        }
+        catch (Exception e){
             throw new Exception("Country not found");
         }
-        Country country = new Country();
-        CountryName countryName1 = CountryName.valueOf(countryName);
-        country.setCountryName(countryName1);
-        country.setCode(countryName1.toCode());
-        country.setUsers(user);
-        user.setCountry(country);
-        user.setOriginalIp(countryName1.toCode());
-        user.setConnected(false);
-        user.setMaskedIp(null);
-        userRepository3.save(user);
 
-        return user;
     }
 
     @Override

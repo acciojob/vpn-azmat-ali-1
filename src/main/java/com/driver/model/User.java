@@ -22,14 +22,14 @@ public class User {
     @ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
     private List<ServiceProvider> serviceProviderList = new ArrayList<>();
     @OneToOne(mappedBy = "users",cascade = CascadeType.ALL)
-    private Country country;
+    private Country originalCountry;
 
-    public Country getCountry() {
-        return country;
+    public Country getOriginalCountry() {
+        return originalCountry;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setOriginalCountry(Country originalCountry) {
+        this.originalCountry = originalCountry;
     }
 
 
