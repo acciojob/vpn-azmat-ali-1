@@ -61,6 +61,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             }
 
         }
+
         throw new Exception("Unable to connect");
     }
 
@@ -79,27 +80,29 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User communicate(int senderId, int receiverId) throws Exception {
 
-        User senderUser = userRepository2.findById(senderId).get();
-        User receiverUser = userRepository2.findById(receiverId).get();
+        if(userRepository2.findById(senderId).isPresent()&&userRepository2.findById(receiverId).isPresent()){
+            User senderUser = userRepository2.findById(senderId).get();
+            User receiverUser = userRepository2.findById(receiverId).get();
 
-        Country receiverCountry = null;
-        if (receiverUser.getMaskedIp() == null) {
-            receiverCountry = receiverUser.getOriginalCountry();
-            Country senderCountry = senderUser.getOriginalCountry();
 
-            if (!senderCountry.getCountryName().equals(receiverCountry.getCountryName())) {
-                try {
-                    connect(senderId, receiverCountry.getCountryName().name());
-                } catch (Exception e) {
-                    throw new Exception("Cannot establish communication");
+            Country receiverCountry = null;
+            if (receiverUser.getMaskedIp() == null) {
+                receiverCountry = receiverUser.getOriginalCountry();
+                Country senderCountry = senderUser.getOriginalCountry();
+
+                if (!senderCountry.getCountryName().equals(receiverCountry.getCountryName())) {
+                    try {
+                        connect(senderId, receiverCountry.getCountryName().name());
+                    } catch (Exception e) {
+                        throw new Exception("Cannot establish communication");
+                    }
                 }
+
+                return senderUser;
             }
 
-            return senderUser;
-        }
-
             String code = receiverUser.getMaskedIp();
-        String countryName ="";
+            String countryName ="";
             if (code.equals("001")) {
                 countryName = "IND";
             }
@@ -121,7 +124,9 @@ public class ConnectionServiceImpl implements ConnectionService {
             }
 
 
-        return senderUser;
+            return senderUser;
+        }
 
+return null;
     }
 }
