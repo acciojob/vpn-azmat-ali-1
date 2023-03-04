@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String originalIp;
     private String maskedIp;
-    private boolean connected;
+    private Boolean connected;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Connection>connectionList = new ArrayList<>();
 
@@ -43,6 +43,18 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(int id, String username, String password, String originalIp, String maskedIp, Boolean connected, List<Connection> connectionList, List<ServiceProvider> serviceProviderList, Country originalCountry) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.originalIp = originalIp;
+        this.maskedIp = maskedIp;
+        this.connected = connected;
+        this.connectionList = connectionList;
+        this.serviceProviderList = serviceProviderList;
+        this.originalCountry = originalCountry;
     }
 
     public List<Connection> getConnectionList() {

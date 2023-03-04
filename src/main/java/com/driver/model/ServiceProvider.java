@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "service_provides")
+@Table(name = "service_providers")
 public class ServiceProvider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +50,15 @@ public class ServiceProvider {
     }
 
     public ServiceProvider() {
+    }
+
+    public ServiceProvider(int id, String name, Admin admin, List<User> users, List<Connection> connectionList, List<Country> countryList) {
+        this.id = id;
+        this.name = name;
+        this.admin = admin;
+        this.users = users;
+        this.connectionList = connectionList;
+        this.countryList = countryList;
     }
 
     public Admin getAdmin() {

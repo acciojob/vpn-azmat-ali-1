@@ -28,6 +28,13 @@ public class Admin {
     public Admin() {
     }
 
+    public Admin(int id, String username, String password, List<ServiceProvider> serviceProviders) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.serviceProviders = serviceProviders;
+    }
+
     public int getId() {
         return id;
     }

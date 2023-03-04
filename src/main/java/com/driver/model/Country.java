@@ -29,6 +29,14 @@ public class Country {
         this.serviceProvider = serviceProvider;
     }
 
+    public Country(int id, CountryName countryName, String code, User user, ServiceProvider serviceProvider) {
+        this.id = id;
+        this.countryName = countryName;
+        this.code = code;
+        this.user = user;
+        this.serviceProvider = serviceProvider;
+    }
+
     public Country() {
     }
 

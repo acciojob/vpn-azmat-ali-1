@@ -27,44 +27,38 @@ public class UserServiceImpl implements UserService {
     public User register(String username, String password, String countryName) throws Exception{
 
 
-//        try {
-//            User user = new User();
-//            user.setUsername(username);user.setPassword(password);
-//
-//            Country country = new Country();
-//            CountryName countryName1 = CountryName.valueOf(countryName.toUpperCase());
-//            country.setCountryName(countryName1);
-//            country.setCode(countryName1.toCode());
-//            country.setUser(user);
-//
-//            user.setOriginalCountry(country);
-//            user.setOriginalIp(country.getCode()+"."+user.getId());
-//            user.setConnected(false);
-//            user.setMaskedIp(null);
-//            userRepository3.save(user);
-//
-//            return user;
-//        }
-//        catch (Exception e){
-//            throw new Exception("Country not found");
-//        }
-        return null;
+
+            User user = new User();
+            user.setUsername(username);user.setPassword(password);
+
+            Country country = new Country();
+            CountryName countryName1 = CountryName.valueOf(countryName.toUpperCase());
+            country.setCountryName(countryName1);
+            country.setCode(countryName1.toCode());
+            country.setUser(user);
+
+            user.setOriginalCountry(country);
+            user.setOriginalIp(country.getCode()+"."+user.getId());
+            user.setConnected(false);
+            user.setMaskedIp(null);
+            userRepository3.save(user);
+
+            return user;
     }
 
     @Override
     public User subscribe(Integer userId, Integer serviceProviderId) {
 
-//        User user = userRepository3.findById(userId).get();
-//        ServiceProvider serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
-//
-//        List<User> userList = serviceProvider.getUsers();
-//        List<ServiceProvider>serviceProviderList= user.getServiceProviderList();
-//        userList.add(user);
-//        serviceProvider.setUsers(userList);
-//        serviceProviderList.add(serviceProvider);
-//        user.setServiceProviderList(serviceProviderList);
-//        userRepository3.save(user);
-//        return user;
-        return null;
+        User user = userRepository3.findById(userId).get();
+        ServiceProvider serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
+
+        List<User> userList = serviceProvider.getUsers();
+        List<ServiceProvider>serviceProviderList= user.getServiceProviderList();
+        userList.add(user);
+        serviceProvider.setUsers(userList);
+        serviceProviderList.add(serviceProvider);
+        user.setServiceProviderList(serviceProviderList);
+        userRepository3.save(user);
+        return user;
     }
 }
