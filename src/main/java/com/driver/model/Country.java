@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 // Note: Do not write @Enumerated annotation above CountryName in this model.
 @Entity
-@Table
+@Table(name = "countries")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
