@@ -39,9 +39,9 @@ public class UserServiceImpl implements UserService {
         CountryName countryName1 = CountryName.valueOf(countryName);
         country.setCountryName(countryName1);
         country.setCode(countryName1.toCode());
-        country.setUser(user);
+        country.setUsers(user);
         user.setCountry(country);
-        user.setOriginalIp(countryName1.toCode());
+        user.setOriginalCountry(countryName1.toCode());
         user.setConnected(false);
         user.setMaskedIp(null);
         userRepository3.save(user);
@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService {
         User user = userRepository3.findById(userId).get();
         ServiceProvider serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
 
-        List<User> userList = serviceProvider.getUserList();
-        List<ServiceProvider>serviceProviderList= user.getServiceProviderList();
+        List<User> userList = serviceProvider.getUsers();
+        List<ServiceProvider>serviceProviderList= user.getServiceProviders();
         userList.add(user);
-        serviceProvider.setUserList(userList);
+        serviceProvider.setUsers(userList);
         serviceProviderList.add(serviceProvider);
-        user.setServiceProviderList(serviceProviderList);
+        user.setServiceProviders(serviceProviderList);
         userRepository3.save(user);
         return user;
     }

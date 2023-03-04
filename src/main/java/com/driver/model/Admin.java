@@ -1,7 +1,5 @@
 package com.driver.model;
 
-import org.hibernate.annotations.Generated;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +15,14 @@ public class Admin {
     private String password;
 
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
-    List<ServiceProvider>serviceProviderList = new ArrayList<>();
+    List<ServiceProvider> serviceProviders = new ArrayList<>();
 
-    public List<ServiceProvider> getServiceProviderList() {
-        return serviceProviderList;
+    public List<ServiceProvider> getServiceProviders() {
+        return serviceProviders;
     }
 
-    public void setServiceProviderList(List<ServiceProvider> serviceProviderList) {
-        this.serviceProviderList = serviceProviderList;
+    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
+        this.serviceProviders = serviceProviders;
     }
 
     public Admin() {

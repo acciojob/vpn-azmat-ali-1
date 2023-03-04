@@ -14,7 +14,7 @@ public class Country {
 
     @OneToOne
     @JoinColumn
-    private User user;
+    private User users;
     @ManyToOne
     @JoinColumn
     private ServiceProvider serviceProvider;
@@ -34,12 +34,12 @@ public class Country {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public User getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(User users) {
+        this.users = users;
     }
 
     public void setId(int id) {

@@ -1,7 +1,6 @@
 package com.driver.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +13,15 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String originalIp;
+    private String originalCountry;
     private String maskedIp;
     private boolean connected;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Connection>connectionList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "userList",cascade = CascadeType.ALL)
-    private List<ServiceProvider>serviceProviderList= new ArrayList<>();
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
+    private List<ServiceProvider> serviceProviders = new ArrayList<>();
+    @OneToOne(mappedBy = "users",cascade = CascadeType.ALL)
     private Country country;
 
     public Country getCountry() {
@@ -34,12 +33,12 @@ public class User {
     }
 
 
-    public List<ServiceProvider> getServiceProviderList() {
-        return serviceProviderList;
+    public List<ServiceProvider> getServiceProviders() {
+        return serviceProviders;
     }
 
-    public void setServiceProviderList(List<ServiceProvider> serviceProviderList) {
-        this.serviceProviderList = serviceProviderList;
+    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
+        this.serviceProviders = serviceProviders;
     }
 
     public User() {
@@ -77,12 +76,12 @@ public class User {
         this.password = password;
     }
 
-    public String getOriginalIp() {
-        return originalIp;
+    public String getOriginalCountry() {
+        return originalCountry;
     }
 
-    public void setOriginalIp(String originalIp) {
-        this.originalIp = originalIp;
+    public void setOriginalCountry(String originalCountry) {
+        this.originalCountry = originalCountry;
     }
 
     public String getMaskedIp() {
@@ -93,7 +92,7 @@ public class User {
         this.maskedIp = maskedIp;
     }
 
-    public boolean isConnected() {
+    public boolean getConnected() {
         return connected;
     }
 
