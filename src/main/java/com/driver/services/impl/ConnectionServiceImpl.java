@@ -31,7 +31,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         }
         Country country = user.getOriginalCountry();
         String name = String.valueOf(country.getCountryName());
-        if (name.equalsIgnoreCase(countryName)) {
+        if (name.equals(countryName)) {
             return user;
         }
         List<ServiceProvider> serviceProviderList = user.getServiceProviderList();
