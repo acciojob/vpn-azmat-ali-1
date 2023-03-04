@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends Exception {
     @Autowired
     UserServiceImpl userService;
     @PostMapping("/register")

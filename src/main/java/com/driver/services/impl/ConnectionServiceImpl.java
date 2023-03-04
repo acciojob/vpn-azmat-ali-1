@@ -103,18 +103,23 @@ public class ConnectionServiceImpl implements ConnectionService {
 
             String code = receiverUser.getMaskedIp();
             String countryName ="";
-            if (code.equals("001")) {
-                countryName = "IND";
-            }
-            else if(code.equals("002")){
+            switch (code) {
+                case "001":
+                    countryName = "IND";
+                    break;
+                case "002":
 
-                countryName="USA";
-            } else if (code.equals("003")) {
-                countryName="AUS";
-            } else if (code.equals("004")) {
-                countryName="CHI";
-            } else {
-                countryName="JPN";
+                    countryName = "USA";
+                    break;
+                case "003":
+                    countryName = "AUS";
+                    break;
+                case "004":
+                    countryName = "CHI";
+                    break;
+                default:
+                    countryName = "JPN";
+                    break;
             }
 
             try {
